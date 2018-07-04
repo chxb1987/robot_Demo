@@ -15,9 +15,8 @@ namespace TestAPI
         static void Main(string[] args)
         {
             IRCTset iRCTset = new IRCTset();
-            Console.WriteLine(iRCTset.getCanner().ToString());
-
-
+            Console.WriteLine(iRCTset.getCanner().Count);
+            iRCTset.getScannerControllersView();
             Console.ReadKey();
 
 
