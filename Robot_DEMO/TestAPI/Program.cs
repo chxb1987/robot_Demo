@@ -18,8 +18,6 @@ namespace TestAPI
             Console.WriteLine(iRCTset.getCanner().ToString());
 
 
-
-
             Console.ReadKey();
 
 
