@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72059029-EFAC-4EDF-BC80-F29521D12F8E}</ProjectGuid>
+    <ProjectGuid>{97405107-F4DD-4E33-846E-C352904DF0A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestAPI</RootNamespace>
-    <AssemblyName>TestAPI</AssemblyName>
+    <RootNamespace>ABB_DEMO_TEST</RootNamespace>
+    <AssemblyName>ABB_DEMO_TEST</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,12 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ABB.Robotics.Controllers.PC, Version=6.1.6495.1010, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ABB.Robotics.Controllers.PC">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ABB Industrial IT\Robotics IT\SDK\PCSDK 6.01\ABB.Robotics.Controllers.PC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRCTset.cs" />
+    <Compile Include="NetDumpRapid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

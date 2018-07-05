@@ -15,8 +15,12 @@ namespace TestAPI
         static void Main(string[] args)
         {
             IRCTset iRCTset = new IRCTset();
-            Console.WriteLine(iRCTset.getCanner().Count);
+            iRCTset.getCanner();
             iRCTset.getScannerControllersView();
+           // Console.WriteLine("请输入要选的实例，例如：1，2，3...");
+          //  var id = Console.ReadLine();
+ 
+
             Console.ReadKey();
 
 

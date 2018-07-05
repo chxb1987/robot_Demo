@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace TestAPI
         private NetworkScanner scanner;
         private Controller controller;
         private NetworkWatcher watcher;
-        private ControllerInfoCollection infoControllers;
+        public ControllerInfoCollection infoControllers;
         private ABB.Robotics.Controllers.RapidDomain.Task[] tasks;
         private NetworkWatcher networkwatcher;
         private List<ControllerInfo> listControllers;
@@ -51,17 +52,42 @@ namespace TestAPI
         {
             if (infoControllers.Count != 0)
             {
+                Console.WriteLine("当前一共有 \t{0} 个实例运行，列表信息为：", infoControllers.Count);
                 foreach (ControllerInfo item in infoControllers)
                 {
-                    Console.WriteLine("当前一共有 {0} 个实例运行，列表信息为：", infoControllers.Count);
-                    Console.Write("systemname:{0}", item.ControllerName);
-
-
-
-
+                    Console.WriteLine(("").PadRight(70, '-'));
+                    Console.WriteLine("Controller-Name:\t{0}", item.ControllerName);
+                    Console.WriteLine("System-ID:\t{0}", item.SystemId);
+                    Console.WriteLine("Base-Path:\t{0}", item.BaseDirectory);
+                    Console.WriteLine("Virtual-Real?:\t{0}", item.IsVirtual);
+                    Console.WriteLine("System-Name:\t{0}", item.SystemName);
+                    Console.WriteLine("System-Version:\t{0}", item.Version);
+                    Console.WriteLine("System-IPAddress:\t{0}", item.IPAddress);
+                    Console.WriteLine(("").PadRight(70, '-'));
+                    if
+                        (item.Availability == Availability.Available)
+                    {
+                        if (this.controller != null)
+                        {
+                            this.controller.Logoff();
+                            this.controller.Dispose();
+                            this.controller = null;
+                        }
+                        this.controller = ControllerFactory.CreateFrom(item);
+                        this.controller.Logon(UserInfo.DefaultUser);
+                        if (controller.OperatingMode == ControllerOperatingMode.Auto)
+                        {
+                            tasks = controller.Rapid.GetTasks();
+                            using (Mastership m = Mastership.Request(controller.Rapid))
+                            {
+                                //Perform operation
+                                // this.controller.Restart();
+                                tasks[0].Start();
+                            }
+                        }
+                    }
                 }
             }
- 
         }
     }
 }
